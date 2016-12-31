@@ -1,0 +1,16 @@
+<!-- create a new variable collection and set it to the frontpage collection -->
+{% assign collection = collections.frontpage %}
+{% paginate collection.products by 8 %}
+	
+	  <h2>{{ collection.title }}</h2>
+	  {% for product in collection.products %}
+	    {% include 'product-loop' %}
+	  {% endfor %}
+
+<!-- if there are multiple pages, show pagination links -->
+{% if paginate.pages > 1 %}
+<div class="pagination text-center margin-bottom-30">
+  <p>{{ paginate | default_pagination }}</p>
+</div>
+{% endif %}
+{% endpaginate %}

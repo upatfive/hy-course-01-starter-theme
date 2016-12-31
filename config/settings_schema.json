@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Welcome",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Theme Settings ✌️"
+      }
+    ]
+  }, 
+  {
+      "name": "Colors",
+      "settings": [
+        {
+          "type": "color",
+          "id": "hl_color",
+          "label": "Highlight Color 🎨",
+          "default": "#1b52dd"
+        }
+      ]
+    }
+]

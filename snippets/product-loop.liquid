@@ -1,0 +1,19 @@
+
+<div class="left {% cycle '','','','last' %}">
+  <div>
+    <a href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
+    </a>
+  </div>
+  <div>
+    <a href="{{ product.url | within: collection }}">
+        {{ product.title }}
+      </a>
+  </div>
+  <div >
+    {% if product.price_varies %}From{% endif %}
+    {{ product.price | money }}
+    <button class="js-add-to-cart" data-id="{{product.variants[0].id}}">Add to Cart</button>
+    <button class="js-cart-remove" data-id="{{product.variants[0].id}}">Remove item</button>
+  </div>
+</div>

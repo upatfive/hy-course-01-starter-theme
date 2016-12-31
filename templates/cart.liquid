@@ -1,0 +1,86 @@
+<h2>The Cart</h2>
+
+{% if cart.item_count > 0 %}
+
+<!-- form submitting to Shopify's cart post action -->
+<form action="/cart" method="post">
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product Title</th>
+        <th>Price</td>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for item in cart.items %}    
+          <tr>
+
+          	<!-- Thumbnail image of product that links back to product page -->
+            <td>
+              <div class="item-thumb">
+                <a href="{{ item.product.url }}">  
+                  <img src="{{ item.product.featured_image.src | product_img_url: 'small' }}" alt="{{ item.title | escape }}" />
+                </a>
+              </div>
+            </td>
+
+            <!-- Item title - also includes the variant chosen -->
+            <td>
+              <div class="item-title">
+                <a href="{{ item.product.url | within: collections.all }}">{{ item.title }}</a>
+              </div>
+            </td>
+
+						<!-- the Item price with the money filter -->
+            <td>{{ item.price | money }}</td>
+
+            <!-- all user to update quantity -->
+            <td>
+              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" class="item-qty" />
+            </td>
+
+            <!-- total price with money filter -->
+            <td>{{ item.line_price | money }}</td>
+
+            <!-- Remove all the items - set quantity to 0 with this Shopify endpoint -->
+            <td>
+              <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="cart-options">
+
+    	<!-- Cart sub-total -->
+      <h3>Subtotal: {{ cart.total_price | money }}</h3>
+
+      <!-- button to update cart -->
+      <input type="submit" name="update" value="Update cart" class="btn" />
+      or
+
+      <!-- button to checkout -->
+      <!-- This must have the name "checkout"  and other value with simply update the cart.  With name="checkout" it proceeds to the checkout page -->
+      <input type="submit" name="checkout" value="Check out" class="btn"   /> 
+
+      <!-- ???    -->
+      {% if additional_checkout_buttons %}
+      <p class="additional-checkout-buttons">
+        {{ content_for_additional_checkout_buttons }}
+      </p>
+      {% endif %} 
+
+    </div>
+  </form>
+
+{% else %}
+
+<p>There's noting in the cart</p>
+
+{% endif %}

@@ -1,0 +1,57 @@
+
+<!-- This is like the index page of your site
+templates will be rendered inside of here
+you probably want to put your nav and footer in this file -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} - {{ shop.name }}</title>
+
+	<!--	inserts necessary scripts for google analytics, shopify analytics, apps, etc. Must be placed in the head of your theme -->
+  {{ content_for_header }}
+
+	<!-- link to style sheets found in assets -->
+  {{ 'normalize.css' | asset_url | stylesheet_tag }}
+  {{ 'styles.scss.css' | asset_url | stylesheet_tag }}
+
+	<!-- scripts globally hosted by Shopify -->
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+
+  <!-- Include jQuery -->
+  {{ "//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  
+</head>
+<body>
+	<!-- Navigation Main Menu -->
+		<nav class="main">
+			<div class="wrapper">
+				<ul>
+					{% for link in linklists.main-menu.links %}
+					 <li {% if link.active %}class="current"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</nav>
+	<header class="header--large">
+		<h1>{{ shop.name }}</h1>
+	</header>
+
+    {{ content_for_layout}}
+
+	<footer>
+		<div class="wrapper">
+	    <ul>
+	  		{% for link in linklists.footer.links %}
+	  	 	<li {% if link.active %}class="current"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+	  		{% endfor %}
+	    </ul>
+		</div>
+	</footer>
+
+</body>
+</html>
