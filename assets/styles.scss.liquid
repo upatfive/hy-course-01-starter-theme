@@ -4,10 +4,14 @@ $light-grey: #f0f1f2;
 $hl-color: {{settings.hl_color}};
 
 //ELEMENTS
+.page-content {
+	min-height: 80vh;
+}
 .btn {
 	background: black;
-	padding: 12px 20px;
+	padding: 10px 20px;
 	color: white;
+	border: none;
 	&:hover {
 		background: $hl-color;
 	}
@@ -16,6 +20,87 @@ a.btn {
 	text-decoration: none;
 }
 
+.btn.sold-out {
+	background: lighten(black, 5%);
+	&:hover {
+		background: lighten(black, 5%);
+	}
+}
+
+.modal {
+	width: 60%;
+	max-width: 600px;
+	padding: 40px;
+	border: 10px solid $hl-color;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	.close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		color: $hl-color;
+		font-size: 24px;
+		cursor: pointer;
+	}
+}
+
+form {
+	label {
+		margin-bottom: 6px;
+		display: block;
+	}
+	input, select {
+		width: 100%;
+		padding: 10px 12px;
+		background: $light-grey;
+		border: none;
+		margin-bottom: 12px;
+	}
+	select {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border-radius: 0;
+	}
+	input[type="submit"] {
+		background: black;
+		color: white;
+		&:hover {
+			background: $hl-color;
+		}
+	}
+
+}
+
+// GENERAL
+
+.hidden {
+	display: none;
+}
+
+a {
+	transition: 0.3s all ease;
+}
+
+table {
+	width: 100%;
+	th {
+		text-align: left;
+		padding: 10px;
+	}
+	td {
+		padding: 10px;
+	}
+	tr + tr {
+		border-top: 1px solid black;
+	}
+	a {
+		color: black;
+	}
+}
 //navigation (main)
 nav.main {
 	background: white;
@@ -32,23 +117,49 @@ nav.main {
 			padding: 30px 2px;
 		}
 
+		li.current {
+			a {
+				border-bottom: 5px solid $hl-color;
+			}
+		}
+
 		a {
 			display:inline-block;
 			color: black;
 			text-decoration: none;
-			border-bottom: 1px solid white;
+			border-bottom: 5px solid white;
 			padding: 2px;
 			&:hover {
-				border-bottom: 1px solid black;
+				border-bottom: 5px solid $hl-color;
 			}
 		}
 	}
 }
 
+footer {
+	background: black;
+	padding: 20px 0;
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		a {
+			color: white;
+			text-decoration: none;
+		}
+	}
+}
+
+#footer {
+	height: 150px;
+	width: 100%;
+}
+
 //headers 
 .header--large {
-	height: 80vh;
+	height: 50vh;
 	display:flex;
+	background: $light-grey;
 	h1 {
 		margin: auto;
 	}
@@ -56,7 +167,7 @@ nav.main {
 
 //GENERICS
 body {
-	background: $light-grey;
+	
 }
 .wrapper {
 	width: 80%;
@@ -64,17 +175,35 @@ body {
 	margin: 0 auto;
 }
 
+.wrapper--flex {
+	display: flex;
+	flex-wrap: wrap;
+	&.flex--spaced {
+		justify-content: space-between;
+	}
+}
+
+
+
 
 //HOME PAGE
-
+.product-loop--item {
+	flex: 0 0 240px;
+	margin-bottom: 20px;
+	img {
+		width: 100%;
+	}
+	a {
+		color: black;
+		text-decoration: none;
+	}
+}
 
 
 //PRODUCT PAGE
 .product-single {
 	.wrapper {
-		display: flex;
 		align-items: center;
-		flex-wrap: wrap;
 	}
 	img {
 		width: 50%;
@@ -85,7 +214,7 @@ body {
 		flex: 1 0 250px;
 	}
 	.tag-list {
-		margin: 0;
+		margin: 0 0 20px 0;
 		padding: 0;
 		list-style: none;
 		li {
@@ -95,6 +224,16 @@ body {
 			margin-right: 8px;
 			display: inline-block;
 		}
+	}
+}
+
+//CART
+
+.cart-options {
+	padding: 40px 0;
+	input[type="submit"] {
+		display: inline-block;
+		max-width: 200px;
 	}
 }
 

@@ -1,16 +1,10 @@
-<!-- create a new variable collection and set it to the frontpage collection -->
-{% assign collection = collections.frontpage %}
-{% paginate collection.products by 8 %}
-	
-	  <h2>{{ collection.title }}</h2>
-	  {% for product in collection.products %}
-	    {% include 'product-loop' %}
-	  {% endfor %}
+<!-- create a new variable collection and set it to the frontpage collection or whatever collection you want to display on your homepage -->
+
+<!-- include the name of your shop -->
+
+<!-- display the collection title for your front page collection and some or all of the products from the front page collection -->
+
+<!-- display the products from your frontpage collection (or whichever colleciton you elected to feature on the homepage). **HINT** try using the product loop snippet for the product information -->
+			
 
 <!-- if there are multiple pages, show pagination links -->
-{% if paginate.pages > 1 %}
-<div class="pagination text-center margin-bottom-30">
-  <p>{{ paginate | default_pagination }}</p>
-</div>
-{% endif %}
-{% endpaginate %}

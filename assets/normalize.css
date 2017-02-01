@@ -7,7 +7,16 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-
+ html {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+ *, *:before, *:after {
+   -webkit-box-sizing: inherit;
+   -moz-box-sizing: inherit;
+   box-sizing: inherit;
+}
 article,
 aside,
 details,
